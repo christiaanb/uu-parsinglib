@@ -89,10 +89,10 @@ data Str a s loc = Str { -- | the unconsumed part of the input
                        }
 
 -- | A `Parser` is a parser that is prepared to accept "Data.Listlike" input; hence we can deal with @String@'s, @ByteString@'s, etc.
-type Parser      a    = (IsLocationUpdatedBy loc Char, LL.ListLike state Char) => P (Str Char state loc) a
+type Parser      a    = forall loc state . (IsLocationUpdatedBy loc Char, LL.ListLike state Char) => P (Str Char state loc) a
 
 -- | A @`ParserTrafo` a b@ maps a @`Parser` a@ onto a @`Parser` b@.
-type ParserTrafo a  b = (IsLocationUpdatedBy loc Char, LL.ListLike state Char) => P (Str Char state loc) a ->  P (Str Char state loc) b
+type ParserTrafo a  b = forall loc state . (IsLocationUpdatedBy loc Char, LL.ListLike state Char) => P (Str Char state loc) a ->  P (Str Char state loc) b
 
 -- |  `createStr` initialises the input stream with the input data and the initial position. There are no error messages yet.
 createStr :: LL.ListLike s a => loc -> s -> Str a s loc

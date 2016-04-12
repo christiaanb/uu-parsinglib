@@ -1,4 +1,8 @@
 -- | This module just contains the CHANGELOG
+-- Version 2.9.2
+--
+-- Compile on GHC8-rc3
+--
 -- Version 2.8.2
 --
 -- Change in the internal Steps data type in order to get correct behaviour when-- inserting at end of file
